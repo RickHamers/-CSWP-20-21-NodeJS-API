@@ -2,18 +2,18 @@
 // config.js - application configuration 
 'use strict';
 
-/* set the logging level */
+/* Set the logging level */
 const loglevel = process.env.LOGLEVEL || 'trace';
 
-/*  use secretkey from environment variables */
+/*  Use secretkey from environment variables */
 const secretkey = process.env.SECRETKEY;
 
-/* export the class for use elsewhere */
+/* Export the class for use elsewhere */
 module.exports = {
   secretkey: secretkey, // local variable
   webPort: process.env.PORT || 3000,
 
-  /* define usage of tracer module */
+  /* Define usage of tracer module */
   logger: require('tracer')
     .console({
       format: [

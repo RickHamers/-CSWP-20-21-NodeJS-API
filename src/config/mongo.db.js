@@ -1,11 +1,11 @@
 // Rick Hamers - 2019-12-11 14:47
 //mongo.db.js - mongoDB database configuration
 
-/* require necessary modules and files */
+/* Require necessary modules and files */
 const mongoose = require('mongoose');
 const { logger }  = require('./config');
 
-/* use ES6 promises instead of mongoose promise */
+/* Use ES6 promises instead of mongoose promise */
 mongoose.Promise = global.Promise;
 
 /* PRODUCTION */
@@ -33,10 +33,10 @@ if(process.env.NODE_ENV === 'production'){
     {useNewUrlParser: true});
 }
 
-/* mongoose connection to mongoDB database */
+/* Mongoose connection to mongoDB database */
 var connection = mongoose.connection
     .once('open', () => logger.info('-=-=-=-=-=-=-=-=-=-=- Connected to Mongo Database -=-=-=-=-=-=-=-=-=-=-')) //connection succeeded
     .on('error', (error) => logger.error(error.toString())); // connection failed
 
-/* export the class for use elsewhere */
+/* Export the class for use elsewhere */
 module.exports = connection;

@@ -1,5 +1,5 @@
 // Rick Hamers - 2019-12-11 15:13
-// ApiError.js - Define template for API error handling
+// api_error.js - define template for API error handling
 
 'use strict';
 

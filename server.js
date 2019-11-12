@@ -1,22 +1,22 @@
 // Rick Hamers - 2019-12-11 13:58
 //server.js - project main file
 
-/* require necessary modules and files */
+/* Require necessary modules and files */
 const express = require('express');
 const bodyparser = require('body-parser');
 const morgan = require('morgan');
-const ApiError = require('./src/model/ApiError');
+const ApiError = require('./src/model/api_error');
 const { webPort, logger } = require('./src/config/config');
 require('./src/config/mongo.db');
 
-/* require all routes */
-// routes to be added later
+/* Require all routes */
+const auth_routes = require('./src/routes/auth_routes.js'); 
 
-/* server setup */
+/* Server setup */
 const port = process.env.PORT || webPort;
 const app = express();
 
-/* user morgan as logger and user bodyparser to parse JSON */
+/* User morgan as logger and user bodyparser to parse JSON */
 app.use(morgan('dev'));
 app.use(bodyparser.json());
 
@@ -34,17 +34,17 @@ app.use(function (req, res, next) {
     }
 });
 
-/* parse all the defined endpoints */
-// endpoints yet to be added
+/* Parse all the defined endpoints */
+app.use('/api', auth_routes);
 
-/* catch all non-existing endpoint requests and report a 404 error */
+/* Catch all non-existing endpoint requests and report a 404 error */
 app.use('*', function (req, res, next) {
     // logger.error('Non-existing endpoint')
     const error = new ApiError('Non-existing endpoint', 404);
     next(error)
 });
 
-/* listen for incoming requests */
+/* Listen for incoming requests */
 app.listen(port, () => {
     logger.info('-=-=-=-=-=-=-=-=-=-=- Server running, listening on port ' + port + ' -=-=-=-=-=-=-=-=-=-=-');
 });
