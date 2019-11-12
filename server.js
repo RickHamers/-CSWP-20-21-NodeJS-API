@@ -9,14 +9,14 @@ const ApiError = require('./src/model/api_error');
 const { webPort, logger } = require('./src/config/config');
 require('./src/config/mongo.db');
 
-/* Require all routes */
-const auth_routes = require('./src/routes/auth_routes.js'); 
+/* require all routes */
+auth_routes = require('./src/routes/auth_routes.js');
 
 /* Server setup */
 const port = process.env.PORT || webPort;
 const app = express();
 
-/* User morgan as logger and user bodyparser to parse JSON */
+/* Use morgan as logger and use bodyparser to parse JSON */
 app.use(morgan('dev'));
 app.use(bodyparser.json());
 
@@ -39,9 +39,14 @@ app.use('/api', auth_routes);
 
 /* Catch all non-existing endpoint requests and report a 404 error */
 app.use('*', function (req, res, next) {
-    // logger.error('Non-existing endpoint')
     const error = new ApiError('Non-existing endpoint', 404);
     next(error)
+});
+
+/* Catch-all error handler according to Express documentation */
+app.use((err, req, res, next) => {
+    logger.error(err);
+    res.status((err.code || 404)).json(err).end()
 });
 
 /* Listen for incoming requests */
