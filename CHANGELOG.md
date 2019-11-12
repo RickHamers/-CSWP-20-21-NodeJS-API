@@ -1,7 +1,7 @@
 # Changelog
 
 ## [RHa] - Version 1.1.1 - 2019-12-11
-### Implement authentication functionality
+### Bugfix for endpoint mapping
 * Fix incorrect endpoint mapping
 
 ## [RHa] - Version 1.1.0 - 2019-12-11
