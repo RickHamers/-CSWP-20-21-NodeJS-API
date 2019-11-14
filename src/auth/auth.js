@@ -20,3 +20,6 @@ function verifyToken(req, res, next){
         next();
     });
 }
+
+//Export verifyToken to be used by other classes
+module.exports = verifyToken;
