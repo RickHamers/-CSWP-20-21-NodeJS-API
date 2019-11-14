@@ -1,6 +1,10 @@
 # Changelog
 
-## [RHa] - Version 1.1.1 - 2019-11-14
+## [RHa] - Version 1.2.1 - 2019-11-14
+### Fix verifyToken() middleware function
+* Add module.exports to auth.js to export verifyToken() to be used by other classes
+
+## [RHa] - Version 1.2.0 - 2019-11-14
 ### Add advertisement functionality
 * Add advertisement & comment models
 * Add advertisement routes

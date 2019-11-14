@@ -2,7 +2,7 @@
 //advertisement_controller.js - request handling for advertisement purposes
 
 /* Requiring the necessary libraries and assets */
-const ApiError = require('../model/ApiError');
+const ApiError = require('../model/api_error');
 const Advertisement = require('../model/advertisement').adverisement;
 const Comment = require('../model/advertisement').comment;
 const User = require('../model/user');

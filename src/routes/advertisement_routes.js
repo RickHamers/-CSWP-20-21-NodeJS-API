@@ -3,8 +3,8 @@
 
 /* Requiring the necessary libraries and assets */
 const express = require('express');
-const advertisement_controller = require('../controllers/advertisement_controller');
-let VerifyToken = require('../auth/auth');
+const advertisement_controller = require('../controllers/advertisement_controller.js');
+let VerifyToken = require('../auth/auth.js');
 
 /* Creating the express router */
 let routes = express.Router();
