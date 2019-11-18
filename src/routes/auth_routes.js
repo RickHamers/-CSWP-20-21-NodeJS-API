@@ -4,6 +4,7 @@
 /* Requiring the necessary libraries and assets */
 const express = require('express');
 const auth_controller = require('../controllers/auth_controller.js'); 
+let VerifyToken = require('../auth/auth.js');
 
 /* Creating the express router */
 let routes = express.Router();
@@ -15,7 +16,10 @@ routes.post('/register', auth_controller.registerUser);
 routes.post('/login', auth_controller.loginUser);
 
 /* Route for logging out */
-routes.get('/logout', auth_controller.logoutUser);
+routes.get('/logout', VerifyToken, auth_controller.logoutUser);
+
+/* Route for changing passwords */
+routes.put('/change-password', VerifyToken, auth_controller.changePassword);
 
 /* Exporting the routes so they can be used by the other classes */
 module.exports = routes;
