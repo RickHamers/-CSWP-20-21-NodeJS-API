@@ -91,5 +91,46 @@ module.exports = {
         console.log('-=-=-=-=-=-=-=-=-=-=- A GET request was made -=-=-=-=-=-=-=-=-=-=-' + '\n' +
             '=-=-=-=-=-=-=-=-=-=-=-=-=- LOGOUT USER -=-=-=-=-=-=-=-=-=-=-=-=-=');
         res.status(200).send({ auth: false, token: null })
+    },
+
+    changePassword(req, res, next) {
+        console.log('-=-=-=-=-=-=-=-=-=-=- A PUT request was made -=-=-=-=-=-=-=-=-=-=-' + '\n' +
+                    '-=-=-=-=-=-=-=-=-=-=-=-=- CHANGE PASSWORD -=-=-=-=-=-=-=-=-=-=-=-=');
+
+        try {
+            /* validation */
+            assert(req.body.username, 'username must be provided');
+            assert(req.body.password, 'password must be provided');
+            assert(req.body.newPassword, 'new password must be provided');
+
+
+            /* making constants with (new) username and (new) password from the request's body */
+            const username = req.body.username || '';
+            const password = req.body.password || '';
+            const newPassword = req.body.newPassword || '';
+
+            /* hashing the password with bcrypt */
+            const hashedNewPassword = bcrypt.hashSync(newPassword);
+
+            /* update the user with the given constants */
+            User.findOne({ username: username })
+                .then((user) => {
+                    if(user !== null){
+                        if(bcrypt.compareSync(password, user.password)){
+                            console.log('-=-=-=-=-=-=-=-=-=-=- Updating user ' + user.username + ' -=-=-=-=-=-=-=-=-=-=-');
+                            User.updateOne({username: username}, {password: hashedNewPassword}) // Find first record with the specific username and update it in the database - .findOneAndUpdate returns a promise
+                                .then( () => {
+                                    return res.status(200).json('user updated').end()
+                                })
+                                .catch((error) => next(new ApiError(error.toString(), 500)))
+                        } else {
+                            next(new ApiError('password does not match', 401));
+                        }
+                    } else {
+                        next(new ApiError('user not found', 404));
+                    }
+                });
+        } catch (error) {next(new ApiError(error.message, 500))
+        }
     }
 };
