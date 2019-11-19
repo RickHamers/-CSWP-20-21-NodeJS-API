@@ -169,7 +169,7 @@ module.exports = {
             assert(req.query.id, 'id must be provided');
             assert(req.body.content, 'content must be provided');
             assert(req.body.username, 'username must be provided');
-            assert(req.body.advertisement, 'advertisement id must be provided');
+            assert(req.body.advertisementId, 'advertisement id must be provided');
 
             /* making constants with (new) title and (new) content from the request's body */
             const id = req.query.id || '';
