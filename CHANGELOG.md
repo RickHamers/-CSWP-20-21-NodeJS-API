@@ -1,5 +1,9 @@
 # Changelog
 
+## [RHa] - Version 1.3.1 - 2019-19-11
+### Rectify incorrect postCommentOnComment() assertion
+* Change assertion in postCommentOnComment() from "advertisement" to "advertisementId"
+
 ## [RHa] - Version 1.3.0 - 2019-18-11
 ### Add changePassword functionality
 * Add route & functionality for changing a user account's password.
