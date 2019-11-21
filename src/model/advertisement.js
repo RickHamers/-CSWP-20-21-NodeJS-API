@@ -21,7 +21,11 @@ const AdvertisementSchema = new Schema({
     },
     comments: [{
         type: Schema.Types.ObjectId,
-        ref: 'comment',
+        ref: 'comment'
+    }],
+    bids: [{
+        type: Schema.Types.ObjectId,
+        ref: 'bid'
     }]
 });
 
@@ -53,9 +57,31 @@ const CommentSchema = new Schema({
     }]
 });
 
+/* Creating the bid Schema */
+const BidSchema = new Schema({
+    amount: {
+        type: Number,
+        required: true
+    }, 
+    username: {
+        type: String,
+        required: true
+    },
+    advertisementId: {
+        type: String,
+        required: true
+    }
+})
+
 /* Auto populate comments */
 function autoPopulateComments(next){
     this.populate('comments');
+    next()
+}
+
+/* Auto populate comments */
+function autoPopulateBids(next){
+    this.populate('bids');
     next()
 }
 
@@ -67,6 +93,9 @@ CommentSchema
     .pre('findOne', autoPopulateComments)
     .pre('find', autoPopulateComments);
 
+/* Creating the bid model */
+const Bid = mongoose.model('bid', BidSchema);
+
 /* Creating the comment model */
 const Comment = mongoose.model('comment', CommentSchema);
 
@@ -74,4 +103,4 @@ const Comment = mongoose.model('comment', CommentSchema);
 const Advertisement = mongoose.model('advertisement', AdvertisementSchema);
 
 /* Exporting User to be used elsewhere in the project */
-module.exports = {adverisement: Advertisement, comment: Comment};
+module.exports = {adverisement: Advertisement, comment: Comment, bid: Bid};

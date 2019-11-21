@@ -27,6 +27,9 @@ routes.post('/advertisement/comment', VerifyToken, advertisement_controller.post
 /* The POST advertisement request */
 routes.post('/advertisement/comments', VerifyToken, advertisement_controller.postCommentOnComment);
 
+/* The POST bid request */
+routes.post('advertisement/bids', VerifyToken, advertisement_controller.postBid)
+
 /* the UPDATE advertisement request */
 routes.put('/advertisement', VerifyToken, advertisement_controller.updateAdvertisement);
 
@@ -38,6 +41,9 @@ routes.delete('/advertisement', VerifyToken, advertisement_controller.deleteAdve
 
 /* The DELETE specific comment request */
 routes.delete('/comment', VerifyToken, advertisement_controller.deleteComment);
+
+/* The DELETE specific bid request */
+routes.delete('/bid', VerifyToken, advertisement_controller.deleteBid);
 
 /* Exporting the routes so they can be used by the other classes */
 module.exports = routes;
