@@ -1,5 +1,10 @@
 # Changelog
 
+## [RHa] - Version 1.4.0 - 2019-21-11
+### Add bidding functionality
+* Add POST/DELETE bid routes to advertisement routes
+* Add POST/DELETE bid functions to advertisement controller
+
 ## [RHa] - Version 1.3.1 - 2019-19-11
 ### Rectify incorrect postCommentOnComment() assertion
 * Change assertion in postCommentOnComment() from "advertisement" to "advertisementId"
