@@ -15,7 +15,6 @@ const moment = require('moment');
 /* Exporting the controller functions so they can be used by the other classes */
 module.exports = {
 
-    /* Function used to post a new user */
     registerUser(req, res, next){
         console.log('-=-=-=-=-=-=-=-=-=-=- A POST request was made -=-=-=-=-=-=-=-=-=-=-' + '\n' +
                     '-=-=-=-=-=-=-=-=-=-=-=-=-= REGISTER USER =-=-=-=-=-=-=-=-=-=-=-=-=-');
