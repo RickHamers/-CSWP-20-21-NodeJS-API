@@ -5,6 +5,7 @@
 const ApiError = require('../model/api_error');
 const Advertisement = require('../model/advertisement').adverisement;
 const Comment = require('../model/advertisement').comment;
+const Bid = require('../model/advertisement').bid;
 const User = require('../model/user');
 const assert = require('assert');
 
@@ -205,6 +206,48 @@ module.exports = {
         }
     },
 
+    postBid(req, res, next){
+        console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=- POST bid on advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=-');
+        
+        try{
+            /* validation */
+            assert(req.body.amount, 'amount must be provided');
+            assert(req.body.username, 'username must be provided');
+            assert(req.body.advertisementId, 'advertisement id must be provided');
+
+            /* making constants with (new) title and (new) content from the request's body */
+            const amount = req.body.amount || '';
+            const username = req.body.username || '';
+            const advertisementId = req.body.advertisementId || '';
+
+            newBid = new Bid({amount: amount, username: username, advertisementId: advertisementId})
+
+            User.findOne({username: username})
+                .then((user) => {
+                    if (user !== null) {
+                        Advertisement.findOne({_id: advertisementId})
+                            .then((advertisement) => {
+                                if (advertisement !== null) {
+                                    advertisement.comments.push(newBid);
+                                    Promise.all([newBid.save(), advertisement.save()])
+                                        .then(() => res.status(200).json(newBid).end())
+                                        .catch((error) => next(new ApiError(error.toString(), 500)));
+                                } else {
+                                    next(new ApiError('advertisement ' + title + ' does not exists'))
+                                        .catch((error) => next(new ApiError(error.toString(), 500)));
+                                }
+                            })
+                            .catch((error) => next(new ApiError(error.toString(), 500)));
+                    } else {
+                        next(new ApiError('user not found', 404));
+                    }
+                })
+                .catch((error) => next(new ApiError(error.toString(), 500)));
+        } catch (error) {
+            next(new ApiError(error.message, 422))
+        }
+    },
+
     /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- UPDATE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
     updateAdvertisement(req, res, next) {
         console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=- PUT advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=-');
@@ -297,7 +340,7 @@ module.exports = {
     },
 
     deleteComment(req, res, next) {
-        console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=- PUT comment -=-=-=-=-=-=-=-=-=-=-=-=-=-');
+        console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=- DELETE comment -=-=-=-=-=-=-=-=-=-=-=-=-=-');
 
         try {
             /* validation */
@@ -321,6 +364,31 @@ module.exports = {
         } catch (error) {
             next(new ApiError(error.message, 422))
         }
-    }
+    },
 
+    deleteBid(req, res, next){
+        console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=- DELETE bid -=-=-=-=-=-=-=-=-=-=-=-=-=-');
+        
+        try{
+            /* validation */
+            assert(req.query.id, 'id must be provided');
+
+            /* making constants with (new) title and (new) content from the request's body */
+            const id = req.query.id || '';
+
+            Bid.findOne({_id: id})
+                .then((bid) => {
+                    if (bid !== null) {
+                        Bid.deleteOne({_id: id})
+                            .then(() => res.status(200).json('bid deleted').end())
+                            .catch((error) => next(new ApiError(error.toString(), 500)));
+                    } else {
+                        next(new ApiError('bid not found', 404));
+                    }
+                })
+                .catch((error) => next(new ApiError(error.toString(), 500)));
+        } catch (error) {
+            next(new ApiError(error.message, 422))
+        }
+    },
 };
