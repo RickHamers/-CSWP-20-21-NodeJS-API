@@ -1,5 +1,9 @@
 # Changelog
 
+## [RHa] - Version 1.4.1 - 2019-25-11
+### Fix bidding functionality
+* Fix bids being pushed to comments array in MongoDB
+
 ## [RHa] - Version 1.4.0 - 2019-21-11
 ### Add bidding functionality
 * Add POST/DELETE bid routes to advertisement routes
