@@ -11,6 +11,7 @@ require('./src/config/mongo.db');
 
 /* require all routes */
 auth_routes = require('./src/routes/auth_routes.js');
+user_routes = require('./src/routes/user_routes.js');
 advertisement_routes = require('./src/routes/advertisement_routes.js');
 
 /* Server setup */
@@ -37,6 +38,7 @@ app.use(function (req, res, next) {
 
 /* Parse all the defined endpoints */
 app.use('/api', auth_routes);
+app.use('/api', user_routes);
 app.use('/api', advertisement_routes);
 
 /* Catch all non-existing endpoint requests and report a 404 error */

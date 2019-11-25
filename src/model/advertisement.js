@@ -93,6 +93,10 @@ CommentSchema
     .pre('findOne', autoPopulateComments)
     .pre('find', autoPopulateComments);
 
+BidSchema
+    .pre('findOne', autoPopulateBids)
+    .pre('find', autoPopulateBids);
+
 /* Creating the bid model */
 const Bid = mongoose.model('bid', BidSchema);
 
