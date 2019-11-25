@@ -228,7 +228,7 @@ module.exports = {
                         Advertisement.findOne({_id: advertisementId})
                             .then((advertisement) => {
                                 if (advertisement !== null) {
-                                    advertisement.comments.push(newBid);
+                                    advertisement.bids.push(newBid);
                                     Promise.all([newBid.save(), advertisement.save()])
                                         .then(() => res.status(200).json(newBid).end())
                                         .catch((error) => next(new ApiError(error.toString(), 500)));
