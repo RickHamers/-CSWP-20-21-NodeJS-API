@@ -28,7 +28,7 @@ routes.post('/advertisement/comment', VerifyToken, advertisement_controller.post
 routes.post('/advertisement/comments', VerifyToken, advertisement_controller.postCommentOnComment);
 
 /* The POST bid request */
-routes.post('advertisement/bids', VerifyToken, advertisement_controller.postBid)
+routes.post('/advertisement/bids', VerifyToken, advertisement_controller.postBid)
 
 /* the UPDATE advertisement request */
 routes.put('/advertisement', VerifyToken, advertisement_controller.updateAdvertisement);
