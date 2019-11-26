@@ -1,5 +1,10 @@
 # Changelog
 
+## [RHa] - Version 1.5.0 - 2019-26-11
+### Add DELETE USER functionality
+* Add DELETE USER functionality in auth_controller
+* Add DELETE USER route in auth_routes
+
 ## [RHa] - Version 1.4.1 - 2019-25-11
 ### Fix bidding functionality
 * Fix bids being pushed to comments array in MongoDB
