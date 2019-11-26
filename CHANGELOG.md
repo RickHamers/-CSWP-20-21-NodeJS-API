@@ -1,5 +1,9 @@
 # Changelog
 
+## [RHa] - Version 1.5.1 - 2019-26-11
+### Update DELETE USER functionality
+* Update DELETE USER functionality in auth_controller to be more RESTful
+
 ## [RHa] - Version 1.5.0 - 2019-26-11
 ### Add DELETE USER functionality
 * Add DELETE USER functionality in auth_controller
