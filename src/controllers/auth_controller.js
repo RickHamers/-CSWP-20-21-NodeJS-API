@@ -135,37 +135,36 @@ module.exports = {
 
     deleteUser(req, res, next) {
         console.log('-=-=-=-=-=-=-=-=-=-=- A DELETE request was made -=-=-=-=-=-=-=-=-=-=-' + '\n' +
-            '-=-=-=-=-=-=-=-=-=-=-=-=-=- DELETE user -=-=-=-=-=-=-=-=-=-=-=-=-=-');
-
+                    '-=-=-=-=-=-=-=-=-=-=-=-=-=- DELETE ACCOUNT -=-=-=-=-=-=-=-=-=-=-=-=-=');
+  
         try {
-            /* validation */
-            assert(req.body.username, 'username must be provided');
-            assert(req.body.password, 'password must be provided');
-
-            /* making constants with (new) username and (new) password from the request's body */
-            const username = req.body.username || '';
-            const password = req.body.password || '';
-
-            /* update the user with the given constants */
-            User.findOne({username: username})
-                .then((user) => {
-                    if(user !== null){
-                        if(bcrypt.compareSync(password, user.password)){
-                            console.log('-=-=-=-=-=-=-=-=-=-=- Deleting user ' + username + ' -=-=-=-=-=-=-=-=-=-=-');
-                            User.deleteOne({username: username, password: password})
-                                .then( () => {
-                                    return res.status(200).json('user deleted').end()
-                                })
-                                .catch((error) => next(new ApiError(error.toString(), 500)))
-                        } else {
-                            next(new ApiError('password does not match', 401));
-                        }
-                    } else {
-                        next(new ApiError('user not found', 404));
-                    }
-                })
+          /* validation */
+          assert(req.query.id, 'user-ID must be provided');
+  
+          /* making constants with the id from the request URL */
+          const id = req.query.id || '';
+  
+          /* update the user with the given constants */
+          User.findOne({
+              _id: id
+            })
+            .then((user) => {
+              if (user !== null) {
+                console.log('-=-=-=-=-=-=-=-=-=-=- Deleting user ' + username + ' -=-=-=-=-=-=-=-=-=-=-');
+                User.deleteOne({
+                    username: username,
+                    password: password
+                  })
+                  .then(() => {
+                    return res.status(200).json('user deleted').end()
+                  })
+                  .catch((error) => next(new ApiError(error.toString(), 500)))
+              } else {
+                next(new ApiError('user not found', 404));
+              }
+            })
         } catch (error) {
-            next(new ApiError(error.message, 500))
+          next(new ApiError(error.message, 500))
         }
-    }
+      }
 };
