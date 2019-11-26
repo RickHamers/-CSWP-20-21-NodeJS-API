@@ -21,7 +21,7 @@ routes.get('/logout', VerifyToken, auth_controller.logoutUser);
 /* Route for changing passwords */
 routes.put('/change-password', VerifyToken, auth_controller.changePassword);
 
-/* Route for changing passwords */
+/* Route for deleting an account */
 routes.delete('/api/user', VerifyToken, auth_controller.deleteUser);
 
 /* Exporting the routes so they can be used by the other classes */

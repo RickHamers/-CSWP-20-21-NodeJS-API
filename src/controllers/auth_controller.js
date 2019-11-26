@@ -139,7 +139,7 @@ module.exports = {
   
         try {
           /* validation */
-          assert(req.query.id, 'user-ID must be provided');
+          assert(req.query.id, 'id must be provided');
   
           /* making constants with the id from the request URL */
           const id = req.query.id || '';
