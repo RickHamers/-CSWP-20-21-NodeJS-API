@@ -153,7 +153,7 @@ module.exports = {
                 console.log('-=-=-=-=-=-=-=-=-=-=- Deleting user ' + username + ' -=-=-=-=-=-=-=-=-=-=-');
                 User.deleteOne({
                     username: username,
-                    password: password
+                    password: user.password
                   })
                   .then(() => {
                     return res.status(200).json('user deleted').end()
