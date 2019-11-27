@@ -150,9 +150,9 @@ module.exports = {
             })
             .then((user) => {
               if (user !== null) {
-                console.log('-=-=-=-=-=-=-=-=-=-=- Deleting user ' + username + ' -=-=-=-=-=-=-=-=-=-=-');
+                console.log('-=-=-=-=-=-=-=-=-=-=- Deleting user ' + user.username + ' -=-=-=-=-=-=-=-=-=-=-');
                 User.deleteOne({
-                    username: username,
+                    username: user.username,
                     password: user.password
                   })
                   .then(() => {
