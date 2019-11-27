@@ -3,6 +3,8 @@
 ## [RHa] - Version 1.5.2 - 2019-26-11
 ### Fix DELETE USER route
 * Update DELETE USER functionality in auth_controller to implement the more RESTful route
+* Fix incorrect URL routing
+* Fix deleteUser() function's username & password initialization
 
 ## [RHa] - Version 1.5.1 - 2019-26-11
 ### Update DELETE USER functionality
