@@ -71,7 +71,7 @@ const BidSchema = new Schema({
         type: String,
         required: true
     }
-})
+});
 
 /* Auto populate comments */
 function autoPopulateComments(next){
@@ -87,7 +87,9 @@ function autoPopulateBids(next){
 
 AdvertisementSchema
     .pre('findOne', autoPopulateComments)
-    .pre('find', autoPopulateComments);
+    .pre('find', autoPopulateComments)
+    .pre('findOne', autoPopulateBids)
+    .pre('find', autoPopulateBids);
 
 CommentSchema
     .pre('findOne', autoPopulateComments)
@@ -107,4 +109,4 @@ const Comment = mongoose.model('comment', CommentSchema);
 const Advertisement = mongoose.model('advertisement', AdvertisementSchema);
 
 /* Exporting User to be used elsewhere in the project */
-module.exports = {adverisement: Advertisement, comment: Comment, bid: Bid};
+module.exports = { adverisement: Advertisement, comment: Comment, bid: Bid};

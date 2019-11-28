@@ -1,5 +1,9 @@
 # Changelog
 
+## [RHa] - Version 1.5.3 - 2019-11-28
+### Fix autopopulate bids
+* Update autopopulate advertisement in model to call autopopulate bids functionality
+
 ## [RHa] - Version 1.5.2 - 2019-27-11
 ### Fix DELETE USER route
 * Update DELETE USER functionality in auth_controller to implement the more RESTful route
