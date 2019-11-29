@@ -220,6 +220,11 @@ module.exports = {
             const username = req.body.username || '';
             const advertisementId = req.body.advertisementId || '';
 
+            /* making sure the amount property os a bid is a positive value & larger than zero */
+            if(amount <= 0){
+                next(new ApiError('Bid amount should be larger than 0', 422))
+            }
+
             newBid = new Bid({amount: amount, username: username, advertisementId: advertisementId})
 
             User.findOne({username: username})
