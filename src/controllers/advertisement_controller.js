@@ -13,7 +13,7 @@ module.exports = {
 
     /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- GET -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
     getAllAdvertisements(req, res, next) {
-        console.log('-=-=-=-=-=-=-=-=-=-=-=-=- GET all advertisements -=-=-=-=-=-=-=-=-=-=-=-=');
+        console.log("\n" + '-=-=-=-=-=-=-=-=-=-=-=-=- GET all advertisements -=-=-=-=-=-=-=-=-=-=-=-=');
 
         /* get all advertisements with the given constant */
         Advertisement.find({}, {_id: 1, title: 1, content: 1, username: 1, upVote: 1, downVote: 1})
@@ -28,7 +28,7 @@ module.exports = {
     },
 
     getAdvertisement(req, res, next) {
-        console.log('=-=-=-=-=-=-=-=-=-=-=-=-=- GET advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=');
+        console.log("\n" + '=-=-=-=-=-=-=-=-=-=-=-=-=- GET advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=');
         try {
             /* validation */
             assert(req.query.id, 'id must be provided');
@@ -53,7 +53,7 @@ module.exports = {
     },
 
     getComment(req, res, next) {
-        console.log('=-=-=-=-=-=-=-=-=-=-=-=-=- GET comment -=-=-=-=-=-=-=-=-=-=-=-=-=');
+        console.log("\n" + '=-=-=-=-=-=-=-=-=-=-=-=-=- GET comment -=-=-=-=-=-=-=-=-=-=-=-=-=');
         try {
             /* validation */
             assert(req.query.id, 'id must be provided');
@@ -78,7 +78,7 @@ module.exports = {
 
     /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- POST -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
     postAdvertisement(req, res, next) {
-        console.log('=-=-=-=-=-=-=-=-=-=-=-=-=- POST advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=');
+        console.log("\n" + '=-=-=-=-=-=-=-=-=-=-=-=-=- POST advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=');
 
         try {
             /* validation */
@@ -121,7 +121,7 @@ module.exports = {
     },
 
     postCommentOnAdvertisement(req, res, next){
-        console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=- POST comment on advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=-');
+        console.log("\n" + '-=-=-=-=-=-=-=-=-=-=-=-=-=- POST comment on advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=-');
 
         try{
             /* validation */
@@ -163,7 +163,7 @@ module.exports = {
     },
 
     postCommentOnComment(req, res, next){
-        console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=- POST comment on comment -=-=-=-=-=-=-=-=-=-=-=-=-=-');
+        console.log("\n" + '-=-=-=-=-=-=-=-=-=-=-=-=-=- POST comment on comment -=-=-=-=-=-=-=-=-=-=-=-=-=-');
 
         try{
             /* validation */
@@ -207,7 +207,7 @@ module.exports = {
     },
 
     postBid(req, res, next){
-        console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=- POST bid on advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=-');
+        console.log("\n" + '-=-=-=-=-=-=-=-=-=-=-=-=-=- POST bid on advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=-');
         
         try{
             /* validation */
@@ -250,7 +250,7 @@ module.exports = {
 
     /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- UPDATE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
     updateAdvertisement(req, res, next) {
-        console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=- PUT advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=-');
+        console.log("\n" + '-=-=-=-=-=-=-=-=-=-=-=-=-=- PUT advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=-');
 
         try {
             /* validation */
@@ -282,7 +282,7 @@ module.exports = {
     },
 
      updateComment(req, res, next) {
-        console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=- PUT comment -=-=-=-=-=-=-=-=-=-=-=-=-=-');
+        console.log("\n" + '-=-=-=-=-=-=-=-=-=-=-=-=-=- PUT comment -=-=-=-=-=-=-=-=-=-=-=-=-=-');
         
         try {
             /* validation */
@@ -312,7 +312,7 @@ module.exports = {
 
     /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- DELETE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
     deleteAdvertisement(req, res, next) {
-        console.log('=-=-=-=-=-=-=-=-=-=-=-=-=- DELETE advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=');
+        console.log("\n" + '=-=-=-=-=-=-=-=-=-=-=-=-=- DELETE advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=');
 
         try {
             /* validation */
@@ -340,7 +340,7 @@ module.exports = {
     },
 
     deleteComment(req, res, next) {
-        console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=- DELETE comment -=-=-=-=-=-=-=-=-=-=-=-=-=-');
+        console.log("\n" + '-=-=-=-=-=-=-=-=-=-=-=-=-=- DELETE comment -=-=-=-=-=-=-=-=-=-=-=-=-=-');
 
         try {
             /* validation */
@@ -367,7 +367,7 @@ module.exports = {
     },
 
     deleteBid(req, res, next){
-        console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=- DELETE bid -=-=-=-=-=-=-=-=-=-=-=-=-=-');
+        console.log("\n" + '-=-=-=-=-=-=-=-=-=-=-=-=-=- DELETE bid -=-=-=-=-=-=-=-=-=-=-=-=-=-');
         
         try{
             /* validation */
