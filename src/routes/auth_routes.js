@@ -22,7 +22,7 @@ routes.get('/logout', VerifyToken, auth_controller.logoutUser);
 routes.put('/change-password', VerifyToken, auth_controller.changePassword);
 
 /* Route for deleting an account */
-routes.delete('/api/user', VerifyToken, auth_controller.deleteUser);
+routes.delete('/delete-account', VerifyToken, auth_controller.deleteUser);
 
 /* Exporting the routes so they can be used by the other classes */
 module.exports = routes;

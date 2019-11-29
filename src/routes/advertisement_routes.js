@@ -9,14 +9,14 @@ let VerifyToken = require('../auth/auth.js');
 /* Creating the express router */
 let routes = express.Router();
 
+/* the GET all advertisements request */
+routes.get('/advertisements', VerifyToken, advertisement_controller.getAllAdvertisements);
+
 /* The GET advertisement request */
 routes.get('/advertisement', VerifyToken, advertisement_controller.getAdvertisement);
 
 /* The GET comment request */
 routes.get('/comment', VerifyToken, advertisement_controller.getComment);
-
-/* the GET all advertisements request */
-routes.get('/advertisements', VerifyToken, advertisement_controller.getAllAdvertisements);
 
 /* The POST advertisement request */
 routes.post('/advertisement', VerifyToken, advertisement_controller.postAdvertisement);

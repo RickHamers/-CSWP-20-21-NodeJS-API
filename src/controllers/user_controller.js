@@ -31,8 +31,7 @@ let upload = multer({storage: storage});
 module.exports = {
 
     getProfilePicture(req, res, next){
-        console.log('-=-=-=-=-=-=-=-=-=-=- A GET request was made -=-=-=-=-=-=-=-=-=-=-' + '\n' +
-                    '=-=-=-=-=-=-=-=-=-=-=-= GET PROFILE PICTURE =-=-=-=-=-=-=-=-=-=-=-');
+        console.log("\n" + '=-=-=-=-=-=-=-=-=-=-=-= GET PROFILE PICTURE =-=-=-=-=-=-=-=-=-=-=-');
 
         try {
             if(!req.file) {
@@ -50,8 +49,7 @@ module.exports = {
     },
 
     uploadProfilePicture(req, res, next){
-        console.log('-=-=-=-=-=-=-=-=-=-=- A POST request was made -=-=-=-=-=-=-=-=-=-=-' + '\n' +
-                    '=-=-=-=-=-=-=-=-=-=-=-= POST PROFILE PICTURE =-=-=-=-=-=-=-=-=-=-=-');
+        console.log("\n" + '=-=-=-=-=-=-=-=-=-=-=-= POST PROFILE PICTURE =-=-=-=-=-=-=-=-=-=-=-');
 
         try {
             

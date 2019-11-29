@@ -10,25 +10,25 @@ mongoose.Promise = global.Promise;
 
 /* PRODUCTION */
 if(process.env.NODE_ENV === 'production'){
-    console.log('-=-=-=-=-=-=-=-=-=-=- Connecting to PRODUCTION database -=-=-=-=-=-=-=-=-=-=-');
+    logger.info("\n" + '-=-=-=-=-=-=-=-=-=-=- Connecting to PRODUCTION database -=-=-=-=-=-=-=-=-=-=-');
     mongoose.connect('mongodb+srv://studdit:project@studditproject-oi4rl.azure.mongodb.net/CSWPBackend?retryWrites=true',
         {useNewUrlParser: true});
 
 /* ONLINE-TESTING */
 } else if(process.env.NODE_ENV === 'online-testing'){
-        console.log('-=-=-=-=-=-=-=-=-=-=- Connecting to ONLINE TESTING database -=-=-=-=-=-=-=-=-=-=-');
+    logger.info("\n" + '-=-=-=-=-=-=-=-=-=-=- Connecting to ONLINE TESTING database -=-=-=-=-=-=-=-=-=-=-');
         mongoose.connect('mongodb+srv://studdit:project@studditproject-oi4rl.azure.mongodb.net/CSWPBackendTest?retryWrites=true',
             {useNewUrlParser: true});
 
 /* LOCAL DEVELOPMENT */
 } else if(process.env.NODE_ENV === 'development'){
-    console.log('-=-=-=-=-=-=-=-=-=-=- Connecting to DEVELOP database -=-=-=-=-=-=-=-=-=-=-');
+    logger.info("\n" + '-=-=-=-=-=-=-=-=-=-=- Connecting to DEVELOP database -=-=-=-=-=-=-=-=-=-=-');
     mongoose.connect('mongodb://localhost/CSWP_Mongo_DB',
         {useNewUrlParser: true});
 
 /* LOCAL TESTING */
 } else if(process.env.NODE_ENV === 'testing'){
-    console.log('-=-=-=-=-=-=-=-=-=-=- Connecting to TESTING database -=-=-=-=-=-=-=-=-=-=-');
+    logger.info("\n" + '-=-=-=-=-=-=-=-=-=-=- Connecting to TESTING database -=-=-=-=-=-=-=-=-=-=-');
     mongoose.connect('mongodb://localhost/CSWP_Mongo_DB_Tests',
     {useNewUrlParser: true});
 }

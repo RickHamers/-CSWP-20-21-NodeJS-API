@@ -16,8 +16,7 @@ const moment = require('moment');
 module.exports = {
 
     registerUser(req, res, next){
-        console.log('-=-=-=-=-=-=-=-=-=-=- A POST request was made -=-=-=-=-=-=-=-=-=-=-' + '\n' +
-                    '-=-=-=-=-=-=-=-=-=-=-=-=-= REGISTER USER =-=-=-=-=-=-=-=-=-=-=-=-=-');
+        console.log("\n" + '-=-=-=-=-=-=-=-=-=-=-=-=-= (POST) REGISTER USER =-=-=-=-=-=-=-=-=-=-=-=-=-');
         try{
             /* Validation */
             console.log(req.body);
@@ -53,8 +52,7 @@ module.exports = {
     },
 
     loginUser(req, res, next) {
-        console.log('-=-=-=-=-=-=-=-=-=-=- A POST request was made -=-=-=-=-=-=-=-=-=-=-' + '\n' +
-            '=-=-=-=-=-=-=-=-=-=-=-=-=- LOGIN USER -=-=-=-=-=-=-=-=-=-=-=-=-=');
+        console.log("\n" + '=-=-=-=-=-=-=-=-=-=-=-=-=- (POST) LOGIN USER -=-=-=-=-=-=-=-=-=-=-=-=-=');
         try{
             assert(req.body.username, 'username must be provided');
             assert(req.body.password, 'password must be provided');
@@ -87,14 +85,12 @@ module.exports = {
     },
 
     logoutUser(req, res, next){
-        console.log('-=-=-=-=-=-=-=-=-=-=- A GET request was made -=-=-=-=-=-=-=-=-=-=-' + '\n' +
-            '=-=-=-=-=-=-=-=-=-=-=-=-=- LOGOUT USER -=-=-=-=-=-=-=-=-=-=-=-=-=');
+        console.log("\n" + '=-=-=-=-=-=-=-=-=-=-=-=-=- (GET) LOGOUT USER -=-=-=-=-=-=-=-=-=-=-=-=-=');
         res.status(200).send({ auth: false, token: null })
     },
 
     changePassword(req, res, next) {
-        console.log('-=-=-=-=-=-=-=-=-=-=- A PUT request was made -=-=-=-=-=-=-=-=-=-=-' + '\n' +
-                    '-=-=-=-=-=-=-=-=-=-=-=-=- CHANGE PASSWORD -=-=-=-=-=-=-=-=-=-=-=-=');
+        console.log("\n" + '-=-=-=-=-=-=-=-=-=-=-=-=- (PUT) CHANGE PASSWORD -=-=-=-=-=-=-=-=-=-=-=-=');
 
         try {
             /* validation */
@@ -134,8 +130,7 @@ module.exports = {
     },
 
     deleteUser(req, res, next) {
-        console.log('-=-=-=-=-=-=-=-=-=-=- A DELETE request was made -=-=-=-=-=-=-=-=-=-=-' + '\n' +
-                    '-=-=-=-=-=-=-=-=-=-=-=-=-=- DELETE ACCOUNT -=-=-=-=-=-=-=-=-=-=-=-=-=');
+        console.log("\n" + '-=-=-=-=-=-=-=-=-=-=-=-=-=- DELETE ACCOUNT -=-=-=-=-=-=-=-=-=-=-=-=-=');
   
         try {
           /* validation */
@@ -150,10 +145,10 @@ module.exports = {
             })
             .then((user) => {
               if (user !== null) {
-                console.log('-=-=-=-=-=-=-=-=-=-=- Deleting user ' + username + ' -=-=-=-=-=-=-=-=-=-=-');
+                console.log('-=-=-=-=-=-=-=-=-=-=- Deleting user ' + user.username + ' -=-=-=-=-=-=-=-=-=-=-');
                 User.deleteOne({
-                    username: username,
-                    password: password
+                    username: user.username,
+                    password: user.password
                   })
                   .then(() => {
                     return res.status(200).json('user deleted').end()
