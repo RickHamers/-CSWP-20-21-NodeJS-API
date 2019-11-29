@@ -1,5 +1,9 @@
 # Changelog
 
+## [RHa] - Version 1.5.5 - 2019-11-29
+### Update postBid() functionality
+* Update postBid() functionality with a check for values equal to or smaller than zero
+
 ## [RHa] - Version 1.5.4 - 2019-11-29
 ### Improve logging
 * Update logging with reduction to the amount of lines printed to improve readability
