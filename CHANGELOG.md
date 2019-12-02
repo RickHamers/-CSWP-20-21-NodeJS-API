@@ -1,5 +1,9 @@
 # Changelog
 
+## [RHa] - Version 1.6.0 - 2019-12-2
+### Update profile picture functionality
+* Update profile picture functionality to encode & decode images instead of using ng2-file-upload & multer
+ 
 ## [RHa] - Version 1.5.5 - 2019-11-29
 ### Update postBid() functionality
 * Update postBid() functionality with a check for values equal to or smaller than zero

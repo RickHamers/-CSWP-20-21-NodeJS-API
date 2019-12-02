@@ -9,23 +9,8 @@ let jwt = require('jsonwebtoken');
 let bcrypt = require('bcryptjs');
 let config = require('../config/config');
 const ApiError = require('../model/api_error');
-const multer = require('multer');
 const path = require('path');
 const moment = require('moment');
-
-/* File directory for images */
-const DIR = './src/data/img';
-
-/* Multer setup */
-let storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, DIR);
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now() + '.' + path.extname(file.originalname));
-    }
-});
-let upload = multer({storage: storage});
 
 /* Exporting the controller functions so they can be used by the other classes */
 module.exports = {
@@ -34,17 +19,21 @@ module.exports = {
         console.log("\n" + '=-=-=-=-=-=-=-=-=-=-=-= GET PROFILE PICTURE =-=-=-=-=-=-=-=-=-=-=-');
 
         try {
-            if(!req.file) {
-                console.log("ERROR: No file received");
-                return(res.send({
-                    success: false
-                }));
-            } else {
-                console.log("SUCCESS: File received");
-                return res.send({
-                    success: true
+            /* validation */
+            assert(req.query.username, 'username must be provided');
+
+            /* making constants with (new) title and (new) content from the request's body */
+            const username = req.body.username || '';
+
+            User.findOne({username: username})
+                .then((user) => {
+                    if(user !== null){
+                        res.status(200).json({profilePicture: user.profilePicture}).end();
+                    } else {
+                        next(new ApiError('user not found', 404));
+                    }
                 })
-            }
+
         } catch(error) {next(new ApiError(error.message, 422))}
     },
 
@@ -52,9 +41,25 @@ module.exports = {
         console.log("\n" + '=-=-=-=-=-=-=-=-=-=-=-= POST PROFILE PICTURE =-=-=-=-=-=-=-=-=-=-=-');
 
         try {
-            
+            /* validation */
+            assert(req.body.imageData, 'imageData must be provided');
+            assert(req.body.username, 'username must be provided');
 
+            /* making constants with (new) title and (new) content from the request's body */
+            const imageData = req.body.imageData || '';
+            const username = req.body.username || '';
 
+            User.findOne({username: username})
+                .then((user) => {
+                    if(user !== null){
+                        user.profilePicture.push(imageData);
+                        user.save()
+                            .then(() => { res.status(200).message('Uploaded profile picture').end()})
+                            .catch((error) => {next(new ApiError((error.toString()), 500))})
+                    } else {
+                        next(new ApiError('user not found', 404));
+                    }
+                })
         } catch(error) {next(new ApiError(error.message, 422))}
     }
 };
