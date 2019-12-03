@@ -35,7 +35,7 @@ if(process.env.NODE_ENV === 'production'){
 
 /* Mongoose connection to mongoDB database */
 let connection = mongoose.connection
-    .once('open', () => logger.info('-=-=-=-=-=-=-=-=-=-=- Connected to Mongo Database -=-=-=-=-=-=-=-=-=-=-')) //connection succeeded
+    .once('open', () => logger.info('-=-=-=-=-=-=-=-=-=-=- Connected to Mongo Database -=-=-=-=-=-=-=-=-=-=-' + '\n')) //connection succeeded
     .on('error', (error) => logger.error(error.toString())); // connection failed
 
 /* Export the class for use elsewhere */
