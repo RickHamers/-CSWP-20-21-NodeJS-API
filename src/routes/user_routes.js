@@ -10,7 +10,7 @@ let VerifyToken = require('../auth/auth.js');
 let routes = express.Router();
 
 /* Route for retrieving a profile picture */
-routes.get('./user/profile-picture', VerifyToken, user_controller.getProfilePicture);
+routes.get('/user/profile-picture', VerifyToken, user_controller.getProfilePicture);
 
 /* Route for uploading a profile picture */
 routes.post('/user/profile-picture', VerifyToken, user_controller.uploadProfilePicture);
