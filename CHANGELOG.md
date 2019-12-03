@@ -1,5 +1,9 @@
 # Changelog
 
+## [RHa] - Version 1.6.1 - 2019-12-3
+### Update CORS implementation
+* Update CORS implementation to use the cors nodejs package
+
 ## [RHa] - Version 1.6.0 - 2019-12-2
 ### Update profile picture functionality
 * Update profile picture functionality to encode & decode images instead of using ng2-file-upload & multer

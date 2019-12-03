@@ -5,6 +5,7 @@
 const express = require('express');
 const bodyparser = require('body-parser');
 const morgan = require('morgan');
+const cors = require('cors');
 const ApiError = require('./src/model/api_error');
 const { webPort, logger } = require('./src/config/config');
 require('./src/config/mongo.db');
@@ -21,6 +22,9 @@ const app = express();
 /* Use morgan as logger and use bodyparser to parse JSON */
 app.use(morgan('dev'));
 app.use(bodyparser.json());
+
+/* CORS setup */
+app.use(cors())
 
 /* Prevent CORS pre-fight by allowing requests with origin headers */
 app.use(function (req, res, next) {
