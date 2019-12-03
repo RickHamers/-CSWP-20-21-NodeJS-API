@@ -3,6 +3,7 @@
 ## [RHa] - Version 1.6.2 - 2019-12-2
 ### Fix profile picture functionality
 * Fix update profile picture not uploading imageData to mongo database
+* Fix get profile picture retrieving username from body instead of query
 
 ## [RHa] - Version 1.6.1 - 2019-12-3
 ### Update CORS implementation

@@ -23,8 +23,8 @@ module.exports = {
             assert(req.query.username, 'username must be provided');
 
             /* making constants with (new) title and (new) content from the request's body */
-            const username = req.body.username || '';
-
+            const username = req.query.username || '';
+            console.log(username)
             User.findOne({username: username})
                 .then((user) => {
                     if(user !== null){
