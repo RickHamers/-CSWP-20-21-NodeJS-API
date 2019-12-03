@@ -28,7 +28,9 @@ module.exports = {
             User.findOne({username: username})
                 .then((user) => {
                     if(user !== null){
-                        res.status(200).json({profilePicture: user.profilePicture}).end();
+                        try{
+                            res.status(200).json({profilePicture: user.profilePicture}).end();
+                        } catch(error) {next(new ApiError(error.message, 500))}
                     } else {
                         next(new ApiError('user not found', 404));
                     }
@@ -51,11 +53,15 @@ module.exports = {
 
             User.findOne({username: username})
                 .then((user) => {
-                    if(user !== null){
-                        user.profilePicture.push(imageData);
-                        user.save()
-                            .then(() => { res.status(200).message('Uploaded profile picture').end()})
+                    if(user !== null || undefined){
+                        user.updateOne({profilePicture: imageData})
+                        .then( () => {
+                            console.log('-=-=-=-=-=-=-=-=-=-=- Updating user ' + user.username + '\'s profile picture -=-=-=-=-=-=-=-=-=-=-');
+                            user.save()
+                            .then(() => {res.status(200).json('Uploaded profile picture').end()})
                             .catch((error) => {next(new ApiError((error.toString()), 500))})
+                        })
+                        .catch((error) => next(new ApiError(error.toString(), 500)))
                     } else {
                         next(new ApiError('user not found', 404));
                     }

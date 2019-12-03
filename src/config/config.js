@@ -6,7 +6,7 @@
 const loglevel = process.env.LOGLEVEL || 'trace';
 
 /*  Use secretkey from environment variables */
-const secretkey = process.env.SECRETKEY;
+const secretkey = process.env.SECRETKEY || 'DOOFUS';
 
 /* Export the class for use elsewhere */
 module.exports = {
