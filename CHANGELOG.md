@@ -1,5 +1,9 @@
 # Changelog
 
+## [RHa] - Version 1.7.0 - 2019-12-4
+### Add advertisement picture functionality
+* Add routes & functionality for uploading & retrieving imageData for advertisements
+
 ## [RHa] - Version 1.6.2 - 2019-12-2
 ### Fix profile picture functionality
 * Fix update profile picture not uploading imageData to mongo database

@@ -45,5 +45,11 @@ routes.delete('/comment', VerifyToken, advertisement_controller.deleteComment);
 /* The DELETE specific bid request */
 routes.delete('/bid', VerifyToken, advertisement_controller.deleteBid);
 
+/* Route for retrieving an advertisement picture */
+routes.get('/advertisement/picture', VerifyToken, advertisement_controller.getAdvertisementPicture);
+
+/* Route for uploading an advertisement picture */
+routes.post('/advertisement/picture', VerifyToken, advertisement_controller.uploadAdvertisementPicture);
+
 /* Exporting the routes so they can be used by the other classes */
 module.exports = routes;

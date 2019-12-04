@@ -27,6 +27,41 @@ module.exports = {
             .catch((error) => next(new ApiError(error.toString(), 500)));
     },
 
+    getAdvertisementPicture(req, res, next){
+        console.log("\n" + '-=-=-=-=-=-=-=-=-=-=-=-=-=- GET picture on advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=-');
+
+        try{
+            /* validation */
+            assert(req.body.username, 'username must be provided');
+            assert(req.body.advertisementId, 'advertisement id must be provided');
+
+            /* making constants with (new) title and (new) content from the request's body */
+            const username = req.body.username || '';
+            const advertisementId = req.body.advertisementId || '';
+
+            User.findOne({username: username})
+                .then((user) => {
+                    if (user !== null) {
+                        Advertisement.findOne({_id: advertisementId})
+                            .then((advertisement) => {
+                                if (advertisement !== null) {
+                                    res.status(200).json({advertisementPicture: advertisement.advertisementPicture}).end();
+                                } else {
+                                    next(new ApiError('advertisement does not exist'))
+                                        .catch((error) => next(new ApiError(error.toString(), 500)));
+                                }
+                            })
+                            .catch((error) => next(new ApiError(error.toString(), 500)));
+                    } else {
+                        next(new ApiError('user not found', 404));
+                    }
+                })
+                .catch((error) => next(new ApiError(error.toString(), 500)));
+        } catch (error) {
+            next(new ApiError(error.message, 422))
+        }
+    },
+
     getAdvertisement(req, res, next) {
         console.log("\n" + '=-=-=-=-=-=-=-=-=-=-=-=-=- GET advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=');
         try {
@@ -107,6 +142,45 @@ module.exports = {
                                         .catch((error) => next(new ApiError(error.toString(), 500)));
                                 } else {
                                     next(new ApiError('advertisement ' + title + ' already exists'))
+                                }
+                            })
+                            .catch((error) => next(new ApiError(error.toString(), 500)));
+                    } else {
+                        next(new ApiError('user not found', 404));
+                    }
+                })
+                .catch((error) => next(new ApiError(error.toString(), 500)));
+        } catch (error) {
+            next(new ApiError(error.message, 422))
+        }
+    },
+
+    uploadAdvertisementPicture(req, res, next){
+        console.log("\n" + '-=-=-=-=-=-=-=-=-=-=-=-=-=- POST picture on advertisement -=-=-=-=-=-=-=-=-=-=-=-=-=-');
+
+        try{
+            /* validation */
+            assert(req.body.imageData, 'imageData must be provided');
+            assert(req.body.username, 'username must be provided');
+            assert(req.body.advertisementId, 'advertisement id must be provided');
+
+            /* making constants with (new) title and (new) content from the request's body */
+            const imageData = req.body.imageData || '';
+            const username = req.body.username || '';
+            const advertisementId = req.body.advertisementId || '';
+
+            User.findOne({username: username})
+                .then((user) => {
+                    if (user !== null) {
+                        Advertisement.findOne({_id: advertisementId})
+                            .then((advertisement) => {
+                                if (advertisement !== null) {
+                                    advertisement.updateOne({advertisementPicture: imageData})
+                                        .then(() => res.status(200).json('Uploaded advertisement picture').end())
+                                        .catch((error) => next(new ApiError(error.toString(), 500)));
+                                } else {
+                                    next(new ApiError('advertisement does not exist'))
+                                        .catch((error) => next(new ApiError(error.toString(), 500)));
                                 }
                             })
                             .catch((error) => next(new ApiError(error.toString(), 500)));

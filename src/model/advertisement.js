@@ -70,6 +70,9 @@ const BidSchema = new Schema({
     advertisementId: {
         type: String,
         required: true
+    },
+    advertisementPicture: {
+        type: String
     }
 });
 
