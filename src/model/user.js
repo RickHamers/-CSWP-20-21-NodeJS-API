@@ -1,4 +1,4 @@
-// Rick Hamers - 2019-12-11 15:30
+// Rick Hamers - 2128706
 //user.js - provide a model for an end user account
 
 /* Requiring the necessary libraries and assets */

@@ -1,4 +1,4 @@
-// Rick Hamers - 2019-11-14 14:15
+// Rick Hamers -2128706
 //advertisement.js - provide a model for an advertisement
 
 /* Requiring the necessary libraries and assets */

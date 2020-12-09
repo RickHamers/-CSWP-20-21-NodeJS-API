@@ -1,4 +1,4 @@
-// Rick Hamers - 2019-12-11 15:23
+// Rick Hamers - 2128706
 //auth.js - authentication & credential manager
 
 /* Requiring the necessary libraries and assets */

@@ -1,4 +1,4 @@
-// Rick Hamers - 2019-12-11 15:30
+// Rick Hamers - 2128706
 //auth_routes.js - request router for authentication
 
 /* Requiring the necessary libraries and assets */

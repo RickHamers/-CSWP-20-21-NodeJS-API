@@ -1,4 +1,4 @@
-// Rick Hamers - 2019-12-11 15:43
+// Rick Hamers - 2128706
 //auth_controller.js - request handling for authentication purposes
 
 

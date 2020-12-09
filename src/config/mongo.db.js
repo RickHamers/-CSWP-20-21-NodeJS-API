@@ -1,4 +1,4 @@
-// Rick Hamers - 2019-12-11 14:47
+// Rick Hamers - 2128706
 //mongo.db.js - mongoDB database configuration
 
 /* Require necessary modules and files */

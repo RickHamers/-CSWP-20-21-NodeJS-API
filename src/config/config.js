@@ -1,4 +1,4 @@
-// Rick Hamers - 2019-12-11 15:01
+// Rick Hamers - 2128706
 // config.js - application configuration 
 'use strict';
 

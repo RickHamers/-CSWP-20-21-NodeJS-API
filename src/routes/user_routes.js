@@ -1,4 +1,4 @@
-// Rick Hamers - 2019-20-11 15:37
+// Rick Hamers - 2128706
 //user_routes.js - request router for users
 
 /* Requiring the necessary libraries and assets */

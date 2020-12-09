@@ -1,4 +1,4 @@
-// Rick Hamers - 2019-11-14 14:36
+// Rick Hamers - 2128706
 //advertisement_controller.js - request handling for advertisement purposes
 
 /* Requiring the necessary libraries and assets */

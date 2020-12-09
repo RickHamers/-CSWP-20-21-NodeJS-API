@@ -1,4 +1,4 @@
-// Rick Hamers - 2019-11-14 14:49
+// Rick Hamers - 2128706
 //advertisement_routes.js - request router for advertisements
 
 /* Requiring the necessary libraries and assets */

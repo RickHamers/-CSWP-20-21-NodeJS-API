@@ -1,4 +1,4 @@
-// Rick Hamers - 2019-12-11 15:13
+// Rick Hamers - 2128706
 // api_error.js - define template for API error handling
 
 'use strict';
